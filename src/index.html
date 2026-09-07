@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+  <title>像素农场</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- 顶部信息栏 -->
+  <header class="top-bar">
+    <div class="top-brand">像素农场</div>
+    <div class="top-info">
+      <span class="info-item gold" id="top-gold">0</span>
+      <span class="info-item" id="top-date">第 1 天</span>
+      <span class="info-item" id="top-season">春季</span>
+      <span class="info-item" id="top-weather">晴</span>
+      <span class="info-item" id="top-clock">06:00</span>
+    </div>
+    <div class="top-actions">
+      <button id="btn-harvest-all" title="一键收获">一键收获</button>
+      <button id="btn-water-all" title="一键浇水">一键浇水</button>
+      <button id="btn-reseed" title="一键补种">一键补种</button>
+      <button id="btn-expand" title="扩张一格">扩张</button>
+      <button id="btn-shop">商店</button>
+      <button id="btn-inventory">背包</button>
+      <button id="btn-codex">图鉴</button>
+      <button id="btn-settings">设置</button>
+    </div>
+  </header>
+
+  <!-- 地区切换栏 -->
+  <nav class="region-bar">
+    <span class="region-label">地区:</span>
+    <div id="region-tabs" class="region-tabs"></div>
+  </nav>
+
+  <!-- 游戏画面 -->
+  <main class="game-area">
+    <canvas id="game-canvas" width="640" height="480"></canvas>
+    <div id="toast-container" class="toast-container"></div>
+  </main>
+
+  <!-- 当前选中种子提示 -->
+  <div class="selected-seed-bar" id="selected-seed">未选中种子</div>
+
+  <!-- 面板：商店 -->
+  <aside id="panel-shop" class="side-panel">
+    <div class="panel-header">
+      <h3>商店</h3>
+      <button class="panel-close" data-close="panel-shop">×</button>
+    </div>
+    <div id="shop-list" class="panel-body"></div>
+  </aside>
+
+  <!-- 面板：背包 -->
+  <aside id="panel-inventory" class="side-panel">
+    <div class="panel-header">
+      <h3>背包</h3>
+      <button class="panel-close" data-close="panel-inventory">×</button>
+    </div>
+    <div id="inventory-list" class="panel-body"></div>
+  </aside>
+
+  <!-- 面板：图鉴（自动遍历 crops 生成，未来新增作物无需改代码） -->
+  <aside id="panel-codex" class="side-panel">
+    <div class="panel-header">
+      <h3>作物图鉴</h3>
+      <button class="panel-close" data-close="panel-codex">×</button>
+    </div>
+    <div id="codex-list" class="panel-body"></div>
+  </aside>
+
+  <!-- 面板：设置 -->
+  <aside id="panel-settings" class="side-panel">
+    <div class="panel-header">
+      <h3>设置</h3>
+      <button class="panel-close" data-close="panel-settings">×</button>
+    </div>
+    <div class="panel-body settings-body">
+      <label class="setting-row">
+        <span>窗口置顶</span>
+        <input type="checkbox" id="set-always-on-top" />
+      </label>
+      <label class="setting-row">
+        <span>画面缩放</span>
+        <select id="set-scale">
+          <option value="1">1x</option>
+          <option value="2">2x</option>
+          <option value="3">3x</option>
+        </select>
+      </label>
+      <button id="set-manual-save" class="setting-btn">立即保存</button>
+      <p class="setting-tip">每 30 秒自动保存一次</p>
+    </div>
+  </aside>
+
+  <!-- 脚本（按依赖顺序加载） -->
+  <script src="./js/data.js"></script>
+  <script src="./js/game.js"></script>
+  <script src="./js/renderer.js"></script>
+  <script src="./js/ui.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>
